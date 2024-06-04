@@ -79,9 +79,8 @@ default_values.load_default_env()
 memory = None
 if os.environ.get('AZURE_SQL_SERVER_ENABLE'):
     memory = AzureSQLMemory(
-        server=os.environ.get('AZURE_SQL_SERVER_HOST'),
-        database=os.environ.get('AZURE_SQL_SERVER_DB'),
-        driver_version=os.environ.get('AZURE_SQL_SERVER_DRIVER_VERSION'),
+        connection_string=os.environ.get('AZURE_SQL_SERVER_CONNECTION_STRING'),
+        auth_token=os.environ.get('AZURE_SQL_SERVER_AUTH_TOKEN'),
     )
 
 gandalf_level = GandalfLevel.LEVEL_1
