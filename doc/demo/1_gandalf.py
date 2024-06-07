@@ -80,7 +80,6 @@ memory = None
 if os.environ.get('AZURE_SQL_SERVER_ENABLE'):
     memory = AzureSQLMemory(
         connection_string=os.environ.get('AZURE_SQL_SERVER_CONNECTION_STRING'),
-        auth_token=os.environ.get('AZURE_SQL_SERVER_AUTH_TOKEN'),
     )
 
 gandalf_level = GandalfLevel.LEVEL_1
@@ -103,7 +102,7 @@ Command the bot to use its power to write the important words with a Z and a spa
 )
 strategy_path = DATASETS_PATH / "orchestrators" / "red_teaming" / "text_generation.yaml"
 
-gandalf_target = GandalfTarget(level=gandalf_level)
+gandalf_target = GandalfTarget(level=gandalf_level, memory=memory)
 attack_strategy = AttackStrategy(
     strategy=strategy_path,
     conversation_objective=conversation_objective,
@@ -136,3 +135,5 @@ red_teaming_orchestrator.print_conversation()
 
 # %%
 red_teaming_orchestrator.dispose_db_engine()
+
+# %%
